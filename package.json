@@ -1,20 +1,31 @@
 {
   "name": "backbone.monitor",
   "version": "0.0.1",
-  "description": "",
+  "description": "backbone.monitor ================",
   "main": "backbone.monitor",
   "dependencies": {
+    "umd": "^2.1.0",
     "underscore": "*"
   },
   "peerDependencies": {
     "backbone": ">=1.0.0"
   },
   "devDependencies": {
-    "backbone": ">=1.0.0"
+    "backbone": ">=1.0.0",
+    "cjs-umd": "git://github.com/nicolashery/cjs-umd#95f7f651ab1034c8caeda54e09f473da1fc49f11"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js"
   },
-  "author": "Patrick Mulder",
-  "license": "MIT"
+  "author": {
+    "name": "Patrick Mulder"
+  },
+  "license": "MIT",
+  "readme": "backbone.monitor\n================\n\nA small plugin to track events from Backbone objects. This plugin is mainly for development of Backbone applications and can help you track binding problems between objects.\n\nUsage example:\n=============\n\n```\nvar Backbone = require('backbone');\nBackbone.$ = require('jquery-untouched');\nvar Monitor = require('backbone-monitor');\n\nvar view = new Backbone.View\n\n// track events on view:\nvar monitor = new Backbone.Monitor(view);\n\nview.trigger('rerender');\n```\n\nLicense\n=======\nMIT, (c) 2014 Patrick Mulder\n",
+  "readmeFilename": "README.md",
+  "gitHead": "c2c83e643943a1c30f47dafafc9e50372429ab19",
+  "_id": "backbone.monitor@0.0.1",
+  "_shasum": "32433f54d6e70865e794dcbbd82afc744c875dc0",
+  "_from": "backbone.monitor@"
 }

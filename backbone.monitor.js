@@ -1,23 +1,46 @@
-// Backbone.Monitor.js 0.1.0
-// --------------------------
-
-//     (c) 2014 Patrick Mulder
-//     Backbone.Monitor may be freely distributed under the MIT license.
-//     For all details and documentation:
-//     https://github.com/mulderp/Backbone.Monitor
-
-(function (factory) {
-  if (typeof define === 'function' && define.amd) { define(['underscore', 'backbone', 'exports'], factory);
-  } else if (typeof exports === 'object') { factory(require('underscore'), require('backbone'), exports);
-  } else { factory(_, Backbone, {}); }
-}(function (_, Backbone, Monitor) {
-
-  Monitor = function(obj) {
-    _.extend(this, Backbone.Events);
-    this.listenTo(obj, 'all', function (eventName) {
-      console.log('[event] ' + eventName + ' - object: ' + _.keys(obj));
-    });
+(function (root, factory) {
+  if (typeof exports === 'object') {
+    module.exports = factory(require('underscore'), require('backbone'));
+  }
+  else if (typeof define === 'function' && define.amd) {
+    define(['underscore', 'backbone'], factory);
+  }
+  else {
+    root.Backbone.Monitor = factory(root['_'], root['Backbone']);
+  }
+}(this, function(_, Backbone) {
+  function _requireDep(name) {
+    return {'underscore': _, 'backbone': Backbone}[name];
   }
 
-  Backbone.Monitor = Monitor;
+  var _bundleExports =
+(function (define) {
+    function _require(index) {
+        var module = _require.cache[index];
+        if (!module) {
+            var exports = {};
+            module = _require.cache[index] = {
+                id: index,
+                exports: exports
+            };
+            _require.modules[index].call(exports, module, exports);
+        }
+        return module.exports;
+    }
+    _require.cache = [];
+    _require.modules = [function (module, exports) {
+            var _ = _requireDep('underscore');
+            var Backbone = _requireDep('backbone');
+            Monitor = function (obj) {
+                _.extend(this, Backbone.Events);
+                this.listenTo(obj, 'all', function (eventName) {
+                    console.log('[event] ' + eventName + ' - view: ' + obj.el);
+                });
+            };
+            module.exports = Monitor;
+        }];
+    return  _require(0);
+}());
+
+  return _bundleExports;
 }));
